@@ -35,7 +35,7 @@ else
 	exit 1
 }
 
-
+fi
 #if [[ -z $NETMASK ]]
 #then 
 #{
@@ -67,6 +67,7 @@ else
 	echo "You did not enter a valid Gateway address. Exiting now"
 	exit 1
 }
+fi
 #
 #if [[ -z $GATEWAY ]]
 #then
@@ -83,7 +84,7 @@ ifconfig eth1 netmask $NETMASK
 
 grep -v "$NAMESERVER" /etc/resolv.conf > tmp.resolv.conf
 echo "nameserver" $NAMESERVER >> /tmp/resolv.conf
-#cat /tmp/resolv/conf > /etc/resolv.conf
+cat /tmp/resolv.conf > /etc/resolv.conf
 
 
 touch /tmp/ifcfg-eth1
@@ -100,7 +101,7 @@ touch /tmp/ifcfg-eth1
   echo "DNS1="$NAMESERVER    >>          /tmp/ifcfg-eth1
   echo 'NM_CONTROLLED="no"'  >>		 /tmp/ifcfg-eth1
 
-#mv /tmp/ifcfg-eth1 /etc/sysconfig/network-scripts
+mv /tmp/ifcfg-eth1 /etc/sysconfig/network-scripts
 
 
-#cleanup
+cleanup
