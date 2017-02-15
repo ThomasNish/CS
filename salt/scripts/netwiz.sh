@@ -3,28 +3,19 @@
 . /root/Projects/CS126-Projects/functionlibrary.sh
 trap trapforcrtc SIGINT
 
-echo "Please enter your desired IP address"
+echo "Please enter your desired IP address:"
 read IPADDRESS
 
 if check_ip "$IPADDRESS" ;then
-	echo "This is the IP address you have entered "$IPADDRESS""
+	echo "This is the IP address you have entered: "$IPADDRESS""
 else
 {
 	echo "You have not entered an IP address. Exiting now"
 	exit 1
 }
 fi	 
-#if [[ -z $IPADDRESS ]]
-#then 
-#{
-#	echo "You did not enter an IP address"
-#	exit 1
-#}	 
-#else 
-#	check_ip $IPADDRESS
-#fi
 
-echo "Please enter your desired Netmask"
+echo "Please enter your desired Netmask:"
 read NETMASK
 
 if check_ip "$NETMASK" ;then
@@ -36,26 +27,15 @@ else
 }
 
 fi
-#if [[ -z $NETMASK ]]
-#then 
-#{
-#	echo "You did not enter a Netmask"
-#	exit 1	
-#}
-#else 
-#	check_ip $NETMASK
-#fi
 
 echo "What Nameserver would you like to use?"
 read NAMESERVER
 
-#if [[ -z $NAMESERVER ]]
-#then
-#{
-#	echo "You did not enter a Nameserver"
-#	exit 1
-#}
-#fi
+if [[ ! -z "$NAMESERVER" ]] ;then
+	echo "This is the Nameserver you entered: "$NAMESERVER""
+else 
+	echo "You did not enter a nameserver"
+fi
 
 echo "What is your desired default gateway?"
 read GATEWAY
@@ -68,16 +48,6 @@ else
 	exit 1
 }
 fi
-#
-#if [[ -z $GATEWAY ]]
-#then
-#{ 
-#	echo "You did not enter a Gateway Address"
-#	exit 1
-#}
-#else
-#	check_ip $GATEWAY
-#fi
 
 ifconfig eth1 $IPADDRESS
 ifconfig eth1 netmask $NETMASK
