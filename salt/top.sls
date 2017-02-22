@@ -1,9 +1,9 @@
 base:
   '*':
-    - user
-    - htop
-    - crypttab
-    - hostname
-
-  
+   - users.user
+   - packages.htop
+#   - config.crypttab
+   - config.hostname
+   - iptables
+   - selinux  
 
